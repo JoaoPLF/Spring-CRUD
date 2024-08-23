@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.crud.dto.CategoriaDTO;
 import com.example.crud.dto.CategoriaResponseDTO;
+import com.example.crud.dto.CategoriaUpdateDTO;
 import com.example.crud.repository.CategoriaRepository;
 import com.example.crud.service.CategoriaService;
 
@@ -51,7 +52,7 @@ public class CategoriaController {
   }
 
   @PutMapping("/{id}")
-  public ResponseEntity<CategoriaResponseDTO> atualizar(@PathVariable Long id, @Valid @RequestBody CategoriaDTO novaCategoria) {
+  public ResponseEntity<CategoriaResponseDTO> atualizar(@PathVariable Long id, @Valid @RequestBody CategoriaUpdateDTO novaCategoria) {
     return categoriaRepository.findById(id)
                 .map(categoria -> {
                     CategoriaResponseDTO categoriaAtualizada = categoriaService.atualizar(categoria, novaCategoria);

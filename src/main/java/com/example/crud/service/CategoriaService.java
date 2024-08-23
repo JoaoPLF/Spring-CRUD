@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.crud.dto.CategoriaDTO;
 import com.example.crud.dto.CategoriaResponseDTO;
+import com.example.crud.dto.CategoriaUpdateDTO;
 import com.example.crud.model.Categoria;
 import com.example.crud.repository.CategoriaRepository;
 
@@ -34,7 +35,7 @@ public class CategoriaService {
       .orElseThrow(() -> new NoSuchElementException("Produto não encontrado."));
   }
 
-  public CategoriaResponseDTO atualizar(Categoria antigaCategoria, CategoriaDTO novaCategoria) {
+  public CategoriaResponseDTO atualizar(Categoria antigaCategoria, CategoriaUpdateDTO novaCategoria) {
     if (novaCategoria.getNome() != null) {
       antigaCategoria.setNome(novaCategoria.getNome());
     }
