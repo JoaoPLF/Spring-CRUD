@@ -1,5 +1,6 @@
 package com.example.crud.dto;
 
+import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Positive;
 
 public class ProdutoUpdateDTO {
@@ -9,6 +10,7 @@ public class ProdutoUpdateDTO {
     private Double preco;
 
     @Positive(message = "O valor da avaliação deve ser maior que zero.")
+    @Max(value = 5, message = "A avaliação deve ser menor ou igual a 5.")
     private Double avaliacao;
 
     private Long idCategoria;
