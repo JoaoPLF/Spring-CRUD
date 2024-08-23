@@ -1,12 +1,11 @@
-package com.example.crud.entity;
+package com.example.crud.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Produto {
@@ -14,12 +13,13 @@ public class Produto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Informe o nome do produto.")
     private String nome;
-
-    @NotNull(message = "Informe o preço do produto.")
-    @Positive(message = "O preço do produto deve ser maior que zero.")
     private Double preco;
+    private Double avaliacao;
+
+    @ManyToOne
+    @JoinColumn(name = "id_categoria")
+    private Categoria categoria;
 
     public Long getId() {
         return id;
@@ -39,5 +39,21 @@ public class Produto {
 
     public void setPreco(Double preco) {
         this.preco = preco;
+    }
+
+    public Double getAvaliacao() {
+      return avaliacao;
+    }
+
+    public void setAvaliacao(Double avaliacao) {
+      this.avaliacao = avaliacao;
+    }
+
+    public Categoria getCategoria() {
+      return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+      this.categoria = categoria;
     }
 }

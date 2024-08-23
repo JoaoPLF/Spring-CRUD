@@ -8,19 +8,24 @@ public class ProdutoUpdateDTO {
     @Positive(message = "O preço do produto deve ser maior que zero.")
     private Double preco;
 
+    @Positive(message = "O valor da avaliação deve ser maior que zero.")
+    private Double avaliacao;
+
+    private Long idCategoria;
+
     public String getNome() {
         return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public Double getPreco() {
         return preco;
     }
 
-    public void setPreco(Double preco) {
-        this.preco = preco;
+    public Double getAvaliacao() {
+      return avaliacao;
+    }
+
+    public Long getIdCategoria() {
+        return idCategoria;
     }
 }

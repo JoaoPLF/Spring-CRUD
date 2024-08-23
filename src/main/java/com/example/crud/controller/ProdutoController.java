@@ -1,14 +1,18 @@
 package com.example.crud.controller;
 
+import com.example.crud.dto.ProdutoDTO;
+import com.example.crud.dto.ProdutoResponseDTO;
 import com.example.crud.dto.ProdutoUpdateDTO;
-import com.example.crud.entity.Produto;
 import com.example.crud.repository.ProdutoRepository;
+import com.example.crud.service.ProdutoService;
+
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/produtos")
@@ -16,37 +20,33 @@ public class ProdutoController {
     @Autowired
     private ProdutoRepository produtoRepository;
 
+    @Autowired
+    private ProdutoService produtoService;
+
     @GetMapping
-    public List<Produto> listar() {
-        return produtoRepository.findAll();
+    public List<ProdutoResponseDTO> listar() {
+        return produtoService.listar();
     }
 
     @PostMapping
-    public Produto adicionar(@Valid @RequestBody Produto produto) {
-        return produtoRepository.save(produto);
+    public ProdutoResponseDTO adicionar(@Valid @RequestBody ProdutoDTO produtoDto) {
+        return produtoService.adicionar(produtoDto);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Produto> buscar(@PathVariable Long id) {
-        return produtoRepository.findById(id)
-                .map(produto -> ResponseEntity.ok().body(produto))
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<ProdutoResponseDTO> buscar(@PathVariable Long id) {
+        try {
+            return ResponseEntity.ok(produtoService.buscar(id));
+        } catch (NoSuchElementException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Produto> atualizar(@PathVariable Long id, @Valid @RequestBody ProdutoUpdateDTO novoProduto) {
+    public ResponseEntity<ProdutoResponseDTO> atualizar(@PathVariable Long id, @Valid @RequestBody ProdutoUpdateDTO novoProduto) {
         return produtoRepository.findById(id)
                 .map(produto -> {
-                    if (novoProduto.getNome() != null) {
-                        produto.setNome(novoProduto.getNome());
-                    }
-
-                    if (novoProduto.getPreco() != null) {
-                        produto.setPreco(novoProduto.getPreco());
-                    }
-
-                    Produto produtoAtualizado = produtoRepository.save(produto);
-
+                    ProdutoResponseDTO produtoAtualizado = produtoService.atualizar(produto, novoProduto);
                     return ResponseEntity.ok().body(produtoAtualizado);
                 })
                 .orElse(ResponseEntity.notFound().build());
