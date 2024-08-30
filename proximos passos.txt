@@ -1,0 +1,58 @@
+1. Relacionamentos entre Entidades
+
+    One-to-Many: Adicione uma entidade como Categoria para os produtos. Um produto pode pertencer a uma categoria, e uma categoria pode ter vários produtos.
+    Many-to-Many: Adicione uma entidade Fornecedor, onde um produto pode ter vários fornecedores, e um fornecedor pode fornecer vários produtos.
+
+2. Autenticação e Autorização
+
+    Autenticação JWT: Implemente autenticação baseada em tokens JWT (JSON Web Token) para proteger suas rotas. Isso incluiria uma página de login e rotas protegidas que só podem ser acessadas por usuários autenticados.
+    Controle de Acesso: Adicione diferentes papéis de usuário (admin, usuário comum) e implemente controle de acesso para garantir que apenas usuários com permissões adequadas possam acessar ou modificar determinados recursos.
+
+3. Paginação, Filtro e Ordenação
+
+    Paginação: Implemente paginação nas listagens de produtos para melhorar a performance e a usabilidade.
+    Filtro: Adicione filtros para listar produtos com base em critérios como preço, categoria, ou data de criação.
+    Ordenação: Permita que o usuário ordene os produtos por diferentes critérios, como nome, preço ou data de adição.
+
+4. Validação e Manipulação de Erros
+
+    Validações Avançadas: Melhore as validações dos campos usando Bean Validation, garantindo que, por exemplo, o nome do produto seja único, ou que o preço seja sempre positivo.
+    Manipulação de Erros: Implemente uma estratégia de tratamento de erros que retorne mensagens claras e estruturadas para o usuário (por exemplo, via exceções personalizadas).
+
+5. Funcionalidades de Carrinho de Compras e Checkout
+
+    Carrinho de Compras: Permita que os usuários adicionem produtos a um carrinho e calcule o total. Implemente endpoints para adicionar/remover itens e visualizar o carrinho.
+    Checkout: Simule um processo de checkout, onde o usuário pode finalizar a compra e gerar um pedido.
+
+6. Integração com APIs Externas
+
+    API de Pagamentos: Integre com uma API de pagamentos fictícia para processar pagamentos durante o checkout.
+    API de Envio: Simule uma integração com uma API de envio para calcular custos de envio e gerar números de rastreamento.
+
+7. Relatórios e Dashboards
+
+    Relatórios: Adicione endpoints para gerar relatórios sobre vendas, estoque, e outras métricas relevantes.
+    Dashboards: Crie um dashboard para administradores, onde podem visualizar estatísticas e métricas importantes.
+
+8. CI/CD e Deploy
+
+    CI/CD: Configure um pipeline de CI/CD (Continuous Integration/Continuous Deployment) usando ferramentas como Jenkins, GitLab CI ou GitHub Actions, para automatizar o build, testes e deploy da aplicação.
+    Deploy: Implemente o deploy automatizado da aplicação para um ambiente cloud como AWS, GCP, ou Heroku.
+
+9. Testes Avançados
+
+    Testes de Integração: Escreva testes de integração que envolvam múltiplas camadas do aplicativo, como o acesso ao banco de dados e a comunicação com APIs externas.
+    Testes de Aceitação: Use frameworks como Cucumber para escrever testes de aceitação que validam se as funcionalidades implementadas estão de acordo com os requisitos.
+
+10. Cache e Otimizações de Performance
+
+    Cache: Implemente cache em algumas operações de leitura usando, por exemplo, Redis, para melhorar a performance.
+    Otimizações: Identifique pontos de gargalo e aplique otimizações, como consultas SQL mais eficientes ou indexação de banco de dados.
+
+11. Documentação da API
+
+    Swagger/OpenAPI: Implemente uma documentação interativa da API usando Swagger ou OpenAPI, que permita testar os endpoints diretamente da documentação.
+
+12. Internacionalização (i18n)
+
+    Adicione suporte para múltiplos idiomas na aplicação, incluindo a tradução das mensagens de validação, erros e respostas da API.

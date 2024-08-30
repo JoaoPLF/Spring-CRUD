@@ -31,7 +31,14 @@ DELETE /produtos/{id} - remove um produto
     * `DB_USERNAME` é o nome do usuário do banco de dados
     * `DB_PASSWORD` é a senha do usuário do banco de dados
 
-2. Execute `docker compose up` no console
+2. Para executar o projeto, use uma das seguintes opções:
+    * Se você tem o Java 21 instalado em sua máquina:
+        1. `./gradlew build --no-daemon && docker-compose -f docker-compose.dev.yml up -d`
+        2. `bash run-dev.sh`
+    * Caso não tenha o Java 21 instalado:
+        1. `docker-compose -f docker-compose.prod.yml up -d`
+        2. `bash run-prod.sh`
+    * Observação: criar a build localmente e copiá-la para o container é mais rápido que criar a build dentro dele
 
 3. A aplicação está disponível em `http://localhost:8080/`
 
