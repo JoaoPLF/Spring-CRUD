@@ -16,7 +16,7 @@ public class Categoria {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @Column(unique = true)
+  @Column(unique = true, nullable = false)
   private String nome;
 
   @OneToMany
