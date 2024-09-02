@@ -10,7 +10,7 @@ public class UsuarioDto {
   private String nome;
 
   @NotBlank(message = "Informe o email do usuário.")
-  @Email
+  @Email(message = "Informe um email válido.")
   private String email;
 
   @NotBlank(message = "Informe uma senha.")
