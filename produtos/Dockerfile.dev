@@ -4,6 +4,6 @@ WORKDIR /app
 
 COPY build/libs/crud-0.0.1-SNAPSHOT.jar /app/crud.jar
 
-EXPOSE 8080
+EXPOSE 8080 5005
 
-CMD ["java", "-jar", "/app/crud.jar"]
+CMD ["java", "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005", "-jar", "/app/crud.jar"]
