@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.usuario.dto.LoginDto;
 import com.example.usuario.dto.UsuarioDto;
 import com.example.usuario.service.UsuarioService;
 
@@ -19,9 +20,16 @@ public class UsuarioController {
     this.usuarioService = usuarioService;
   }
 
-  @PostMapping
-  public String cadastrarUsuario(@Valid @RequestBody UsuarioDto usuarioDto) {
-    usuarioService.cadastrar(usuarioDto);
+  @PostMapping("/registrar")
+  public String registrarUsuario(@Valid @RequestBody UsuarioDto usuarioDto) {
+    usuarioService.registrar(usuarioDto);
     return "Ok";
+  }
+
+  @PostMapping("/login")
+  public String login(@Valid @RequestBody LoginDto loginDto) {
+    usuarioService.login(loginDto);
+
+    return "OK";
   }
 }
