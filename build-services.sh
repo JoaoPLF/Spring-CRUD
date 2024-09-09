@@ -1,4 +1,4 @@
-ALL_SERVICES=("api-gateway" "produtos" "usuario")
+ALL_SERVICES=("api-gateway" "produto-service" "usuario-service" "service-discovery")
 
 if [ "$#" -eq 0 ]; then
   SERVICES_TO_BUILD=("${ALL_SERVICES[@]}")

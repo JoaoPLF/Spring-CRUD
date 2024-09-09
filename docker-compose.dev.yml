@@ -10,16 +10,27 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
 
+  service-discovery:
+    build:
+      context: ./service-discovery
+      dockerfile: Dockerfile.dev
+    ports:
+      - "8761:8761"
+      - "5005:5005"
+    env_file:
+      - .env
+
   api-gateway:
     build:
       context: ./api-gateway
       dockerfile: Dockerfile.dev
     ports:
       - "8080:8080"
-      - "5005:5005"
+      - "5006:5005"
     env_file:
       - .env
     depends_on:
+      - service-discovery
       - produto-service
       - usuario-service
 
@@ -29,11 +40,12 @@ services:
       dockerfile: Dockerfile.dev
     ports:
       - "8081:8080"
-      - "5006:5005"
+      - "5007:5005"
     env_file:
       - .env
     depends_on:
       - db
+      - service-discovery
 
   usuario-service:
     build:
@@ -41,11 +53,12 @@ services:
       dockerfile: Dockerfile.dev
     ports:
       - "8082:8080"
-      - "5007:5005"
+      - "5008:5005"
     env_file:
       - .env
     depends_on:
       - db
+      - service-discovery
 
 volumes:
   pgdata:

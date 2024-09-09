@@ -10,6 +10,15 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
 
+  service-discovery:
+    build:
+      context: ./service-discovery
+      dockerfile: Dockerfile.prod
+    ports:
+      - "8761:8761"
+    env_file:
+      - .env
+
   api-gateway:
     build:
       context: ./api-gateway
@@ -19,6 +28,7 @@ services:
     env_file:
       - .env
     depends_on:
+      - service-discovery
       - produto-service
       - usuario-service
 
@@ -32,6 +42,7 @@ services:
       - .env
     depends_on:
       - db
+      - service-discovery
 
   usuario-service:
     build:
@@ -43,6 +54,7 @@ services:
       - .env
     depends_on:
       - db
+      - service-discovery
 
 volumes:
   pgdata:
