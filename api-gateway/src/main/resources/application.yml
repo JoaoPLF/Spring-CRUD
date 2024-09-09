@@ -4,21 +4,24 @@ eureka:
       defaultZone: http://service-discovery:8761/eureka/
 
 spring:
+  application:
+    name: api-gateway
   cloud:
     gateway:
-      locator:
-        enabled: true
-        lowercase-service-id: true
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
       routes:
         - id: produto-service
           uri: http://produto-service:8080/
           predicates:
-          - Path=/api/produtos/**,/api/categorias/**
+          - Path=/produtos/**,/categorias/**
           filters:
           - StripPrefix=1
         - id: usuario-service
           uri: http://usuario-service:8080/
           predicates:
-          - Path=/api/usuario/**
+          - Path=/usuario/**
           filters:
           - StripPrefix=1
